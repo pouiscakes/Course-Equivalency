@@ -1,4 +1,4 @@
-# course-equivalency
+# Course-Equivalency
 PHP web application to help SCU faculty advisors maintain records for course equivalency 
 
 ## How to Setup
