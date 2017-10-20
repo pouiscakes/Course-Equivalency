@@ -1,8 +1,5 @@
 <?php  
-$servername = "dbserver.engr.scu.edu";
-$username = "llin";
-$password = "louislinsql";
-$db_name = "sdb_llin";
+require 'dbserver_info.php';
  $connect = mysqli_connect($servername, $username, $password, $db_name);  
  $id = $_POST["id"];  
  $text = $_POST["text"];  
