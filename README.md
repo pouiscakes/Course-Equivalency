@@ -26,10 +26,10 @@ $db_name = "[DATABASE_NAME]";
 Main application file. 
 
 ### courses_filter_search.js
-Dynamic search filter JS function
+Dynamic search filter JS function.
 
 ### edit.php
-Live table editing PHP function
+Live table editing PHP function.
 
 ### sql_snippets_sandbox.php
 Just used once for creating the table in the database.
