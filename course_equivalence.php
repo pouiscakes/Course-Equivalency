@@ -44,19 +44,19 @@ if ($conn->connect_error) {
 } 
     
 // Check POST requests
-if( !empty($_POST['outside_school']) ) $outside_school = $_POST['outside_school'];
-if( !empty($_POST['outside_course']) ) $outside_course = $_POST['outside_course'];
-if( !empty($_POST['scu_course']) ) $scu_course = $_POST['scu_course'];
-if( !empty($_POST['equivalent']) ) $equivalent = $_POST['equivalent'];
+if( !empty($_POST['outside_school']) ) $outside_school = htmlspecialchars(mysqli_real_escape_string($conn, $_POST['outside_school']));
+if( !empty($_POST['outside_course']) ) $outside_course = htmlspecialchars(mysqli_real_escape_string($conn, $_POST['outside_course']));
+if( !empty($_POST['scu_course']) ) $scu_course = htmlspecialchars(mysqli_real_escape_string($conn, $_POST['scu_course']));
+if( !empty($_POST['equivalent']) ) $equivalent = htmlspecialchars(mysqli_real_escape_string($conn, $_POST['equivalent']));
 if( !empty($_POST['notes']) ) {
-	$notes = $_POST['notes'];
+	$notes = htmlspecialchars(mysqli_real_escape_string($conn, $_POST['notes']));
 } else{
 	$notes = "";
 }
 
 //sql to insert data
-if (!empty($_POST['outside_school']) && !empty($_POST['outside_course']) &&
- 	!empty($_POST['scu_course']) && !empty($_POST['equivalent'])) {
+if (!empty($outside_school) && !empty($outside_course) &&
+ 	!empty($scu_course) && !empty($equivalent)) {
 	$sql = "INSERT INTO courses (outside_school, outside_course, scu_course, equivalence, notes)
 	VALUES ('$outside_school', '$outside_course', '$scu_course', '$equivalent', '$notes')";
 
@@ -66,7 +66,7 @@ if (!empty($_POST['outside_school']) && !empty($_POST['outside_course']) &&
 	    echo "Error: " . $sql . "<br>" . $conn->error;
 	}
 } else {
-	if(!empty($_POST['equivalent']))
+	if(!empty($equivalent))
 		echo "<div class='error'>Error: One or more required fields missing in form</div><br>";
 }
 ?>
