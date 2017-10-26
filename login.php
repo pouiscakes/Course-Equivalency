@@ -36,8 +36,8 @@ require 'dbserver_info.php';
     	die("Connection failed: " . $conn->connect_error);
 	} 
   	
-  	//$myusername = mysqli_real_escape_string($users,$_POST['myusername']);
-    //$mypassword = mysqli_real_escape_string($users,$_POST['mypassword']); 
+  	$myusername = $_POST['myusername'];
+    $mypassword = $_POST['mypassword'];
 
     $sql = "SELECT id FROM users WHERE username = '$myusername' and password = '$mypassword'";
     $result = $conn->query($sql);
