@@ -1,5 +1,6 @@
 <?php
 require 'dbserver_info.php';
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +17,7 @@ require 'dbserver_info.php';
   <body>
     <div class="container">
 
-      <form class="form-signin" name="form1" method="post" action="checklogin.php">
+      <form class="form-signin" name="form1" method="post" action="login.php">
         <h2 class="form-signin-heading">COEN Graduate Course Equivalence</h2>
         <input name="myusername" id="myusername" type="text" class="form-control" placeholder="Username" autofocus>
         <input name="mypassword" id="mypassword" type="password" class="form-control" placeholder="Password">
@@ -35,24 +36,32 @@ require 'dbserver_info.php';
 	if ($conn->connect_error) {
     	die("Connection failed: " . $conn->connect_error);
 	} 
-  	
-  	$myusername = $_POST['myusername'];
-    $mypassword = $_POST['mypassword'];
-
-    $sql = "SELECT id FROM users WHERE username = '$myusername' and password = '$mypassword'";
-    $result = $conn->query($sql);
-    $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-    $active = $row['active'];
-
-    $count = mysqli_num_rows($result);
-
-    if($count == 1) {
-    		session_register("myusername");
-    		$_SESSION['login_user'] = $myusername;
-    }else{
-    	$error = "Your Login Name or Password is invalid";
+  	if( !empty($_POST['myusername']) ) {
+      $myusername = $_POST['myusername'];
+    }
+    if( !empty($_POST['mypassword']) ) {
+      $mypassword = $_POST['mypassword'];
     }
 
+    if( !empty($_POST['myusername']) && !empty($_POST['mypassword']) ) {
+
+      $sql = "SELECT id FROM users WHERE username = '$myusername' and password = '$mypassword'";
+      $result = $conn->query($sql);
+      $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+      // $active = $row['active'];
+
+      $count = mysqli_num_rows($result);
+
+      if($count == 1) {
+      		// session_register("myusername");
+      		$_SESSION['login_user'] = $myusername;
+
+          header("location: course_equivalence.php");
+      }else{
+      	$error = "Your Login Name or Password is invalid";
+      }
+    }
+    
   ?>
 
     </div> <!-- /container -->

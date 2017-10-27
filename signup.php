@@ -1,5 +1,5 @@
 <?php
-require 'dbserver_info.php';
+// require 'dbserver_info.php';
 ?>
 
 <!DOCTYPE html>
@@ -28,21 +28,31 @@ require 'dbserver_info.php';
     </div>
 
 <?php
-  // Create connection
-  $conn = new mysqli($servername, $username, $password, $db_name);
+  // // Create connection
+  // $conn = new mysqli($servername, $username, $password, $db_name);
 
-  // Check connection
-  if ($conn->connect_error) {
-      die("Connection failed: " . $conn->connect_error);
-  } 
+  // // Check connection
+  // if ($conn->connect_error) {
+  //     die("Connection failed: " . $conn->connect_error);
+  // } 
 
   function NewUser(){
+    require 'dbserver_info.php';
+
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $db_name);
+
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
       $username = $_POST['username'];
-      $password1 = $_POST['password'];
+      $password = $_POST['password'];
 
       if (!empty($_POST['username']) && !empty($_POST['password'])) {
-        $sql = "INSERT INTO users (full_name, last_name, newuser, email, password1) 
-        VALUES ($username, $password)";
+        $sql = "INSERT INTO users (username, password) 
+        VALUES ('$username', '$password')";
 
         if ($conn->query($sql) == TRUE){
           echo "Your reigstration is complete.";
@@ -55,10 +65,20 @@ require 'dbserver_info.php';
     }
 
   function SignUp(){
-    if (!empty($_POST['username']) && !empty($_POST['password'])){
-      $sql = mysql_query("SELECT * FROM users WHERE username = '$_POST[username]' AND password = '$_POST[password]' ");
+    require 'dbserver_info.php';
 
-      if(!$row = mysql_fetch_array($sql) or die(mysql_error()))
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $db_name);
+
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    if (!empty($_POST['username']) && !empty($_POST['password'])){
+      $sql = "SELECT * FROM users WHERE username = '$_POST[username]' AND password = '$_POST[password]' ";
+      $result = $conn->query($sql);
+      if(!$row = mysqli_fetch_array($result) or die(mysql_error()))
         NewUser();
       else
         echo "Username already registered.";
@@ -66,6 +86,7 @@ require 'dbserver_info.php';
   }
 
   if (isset($_POST['submit']))
+    echo "Submitted";
     SignUp();
 ?>
 
