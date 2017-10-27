@@ -4,7 +4,7 @@ $conn = new mysqli($servername, $username, $password, $db_name);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-session_start();
+session_start(); // must start session before any HTML
 
 $user_check = $_SESSION['login_user'];
 

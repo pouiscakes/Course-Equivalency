@@ -1,5 +1,6 @@
 <?php
 // require 'dbserver_info.php';
+session_start(); // must start session before any HTML
 ?>
 
 <!DOCTYPE html>
@@ -55,7 +56,9 @@
         VALUES ('$username', '$password')";
 
         if ($conn->query($sql) == TRUE){
-          echo "Your reigstration is complete.";
+          echo "Your registration is complete.";
+          $_SESSION['login_user'] = $username;
+          header("location: course_equivalence.php");
         } else {
           echo "Error: " . $sql . "<br>" . $conn->error;
         }

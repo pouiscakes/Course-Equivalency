@@ -1,6 +1,6 @@
 <?php
 require 'dbserver_info.php';
-session_start();
+session_start(); // must start session before any HTML
 ?>
 
 <!DOCTYPE html>
@@ -61,7 +61,7 @@ session_start();
       	$error = "Your Login Name or Password is invalid";
       }
     }
-    
+
   ?>
 
     </div> <!-- /container -->
