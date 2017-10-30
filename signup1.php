@@ -26,7 +26,7 @@
       header("location: login.php");
     }
     else {
-      $_SESSION['message'] = "User could not be added to the database!";
+      $_SESSION['message'] = "User could not be added to the database! Username may already exist.";
     }
   }
   else{
@@ -43,7 +43,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Signup</title>
+    <title>Course Equivalence</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
     <link href="../css/bootstrap.css" rel="stylesheet" media="screen">
@@ -54,11 +54,11 @@
     <div class="container">
 
       <form class="form-signup" id="usersignup" name="usersignup" method="post" action="signup1.php">
-        <h2 class="form-signup-heading">Register</h2>
+        <h2 class="form-signup-heading">Create an Account</h2>
         <div class="alert alert-error"><?= $_SESSION['message']?></div>
-        <input name="username" id="username" type="text" class="form-control" placeholder="Username" required><br>
-        <input name="password" id="password" type="password" class="form-control" placeholder="Password" required><br>
-        <input name="confirmpassword" id="confirmpassword" type="password" class="form-control" placeholder="confirmpassword" required><br>
+        <input name="username" id="username" type="text" class="form-control" placeholder="Username" required>
+        <input name="password" id="password" type="password" class="form-control" placeholder="Password" required>
+        <input name="confirmpassword" id="confirmpassword" type="password" class="form-control" placeholder="Confirm Password" required><br>
 
 
         <button name="Submit" id="submit" class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
