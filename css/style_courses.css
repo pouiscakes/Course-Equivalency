@@ -91,3 +91,8 @@ td, th {
 /*tr:nth-child(even) {
     background-color: #dddddd;
 }*/
+
+#live_data {
+    margin-bottom:1000px;
+}
+
