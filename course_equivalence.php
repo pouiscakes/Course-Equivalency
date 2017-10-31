@@ -90,39 +90,44 @@ if (!empty($outside_school) && !empty($outside_course) &&
 
 	<input type="text" id="course_search" name="course_search" onkeyup="filterSearch()" placeholder="🔍 Search" />
 
+  <div id="live_data"></div> 
+
 <?php
 
-// sql to select data
-$sql = "SELECT id, outside_school, outside_course, scu_course, equivalence, notes FROM courses";
-$result = $conn->query($sql);
-$output = '';
+// $output = '';
+// // sql to select data
+// $sql = "SELECT id, outside_school, outside_course, scu_course, equivalence, notes FROM courses";
+// $result = $conn->query($sql);
 
-if ($result->num_rows > 0) {
-	$output .= "
-		<table id='course_list'>
-    		<tr class='table_header'>
-    			<th>Outside School</th>
-    			<th>Outside Course</th>
-    			<th>SCU Course</th>
-    			<th>Equivalent</th>
-    			<th>Notes</th>
-    		</tr>";
-    // output data of each row in table
-    while($row = $result->fetch_assoc()) {
-    	$output .= '
-    		<tr>
-    			<td class="outside_school" data-id1="'.$row["id"].'" contenteditable>' . $row["outside_school"] . '</td>
-    			<td class="outside_course" data-id2="'.$row["id"].'" contenteditable>' . $row["outside_course"] . '</td>
-    			<td class="scu_course" data-id3="'.$row["id"].'" contenteditable>' . $row["scu_course"] . '</td>
-    			<td class="equivalence" data-id4="'.$row["id"].'" contenteditable>' . $row["equivalence"] . '</td>
-    			<td class="notes" data-id5="'.$row["id"].'" contenteditable>' . $row["notes"] . '</td>
-    		</tr>'; 
-    }
-    $output .= "</table>";
-} else {
-    $output .= "0 results";
-}
-echo $output;
+// $output .= "
+//     <table id='course_list'>
+//         <tr class='table_header'>
+//           <th>Outside School</th>
+//           <th>Outside Course</th>
+//           <th>SCU Course</th>
+//           <th>Equivalent</th>
+//           <th>Notes</th>
+//           <th>Delete</th>
+//         </tr>";
+// if ($result->num_rows > 0) {
+	
+//     // output data of each row in table
+//     while($row = $result->fetch_assoc()) {
+//     	$output .= '
+//     		<tr>
+//     			<td class="outside_school" data-id1="'.$row["id"].'" contenteditable>' . $row["outside_school"] . '</td>
+//     			<td class="outside_course" data-id2="'.$row["id"].'" contenteditable>' . $row["outside_course"] . '</td>
+//     			<td class="scu_course" data-id3="'.$row["id"].'" contenteditable>' . $row["scu_course"] . '</td>
+//     			<td class="equivalence" data-id4="'.$row["id"].'" contenteditable>' . $row["equivalence"] . '</td>
+//     			<td class="notes" data-id5="'.$row["id"].'" contenteditable>' . $row["notes"] . '</td>
+//           <td><button type="button" name="delete_btn" data-id6="'.$row["id"].'" class="btn btn-xs btn-danger btn_delete">x</button></td>
+//     		</tr>'; 
+//     }
+//     $output .= "</table>";
+// } else {
+//     $output .= "0 results";
+// }
+// echo $output;
 
 mysqli_close($conn);
     
@@ -134,6 +139,17 @@ mysqli_close($conn);
 <script>  
 // JavaScript and jQuery for editing data in tables
  $(document).ready(function(){  
+      function fetch_data()  
+      {  
+           $.ajax({  
+                url:"select.php",  
+                method:"POST",  
+                success:function(data){  
+                     $('#live_data').html(data);  
+                }  
+           });  
+      }  
+      fetch_data(); 
       function edit_data(id, text, column_name)  
       {  
            $.ajax({  
@@ -167,6 +183,22 @@ mysqli_close($conn);
            var id = $(this).data("id5");  
            var notes = $(this).text();  
            edit_data(id,notes, "notes");  
+      });
+      $(document).on('click', '.btn_delete', function(){  
+           var id=$(this).data("id6");  
+           // if(confirm("Are you sure you want to delete this?"))  
+           // {  
+                $.ajax({  
+                     url:"delete.php",  
+                     method:"POST",  
+                     data:{id:id},  
+                     dataType:"text",  
+                     success:function(data){  
+                          // alert(data);  
+                          fetch_data();  
+                     }  
+                });  
+           // }  
       });   
  });  
  </script>
