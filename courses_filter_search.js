@@ -6,7 +6,7 @@ function filterSearch() {
   table = document.getElementById("course_list");
   tr = table.getElementsByTagName('tr');
 
-  for(i = 0; i < tr.length; i++) {
+  for(i = 1; i < tr.length; i++) {
     // a = tr[i].getElementsByTagName("a")[0];
     alert(tr[i]);
     if(tr[i].innerHTML.toUpperCase().indexOf(filter) > -1) { 

@@ -1,6 +1,14 @@
 <script>  
 // JavaScript and jQuery for editing data in tables
  $(document).ready(function(){  
+      function toggle_form() {
+          var x = document.getElementById("add_course_form");
+          if (x.style.display === "none") {
+              x.style.display = "block";
+          } else {
+              x.style.display = "none";
+          }
+      }
       function fetch_data()  
       {  
            $.ajax({  
