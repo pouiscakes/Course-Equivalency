@@ -73,7 +73,7 @@ if($login_session == 'advisor') {
   	if ($conn->query($sql) === TRUE) {
   	    // echo "New record created successfully<br>";
   	} else {
-  	    echo "Error: " . $sql . "<br>" . $conn->error;
+  	    echo "<div class='error'>Course could not be added! A duplicate course entry already exists.</div><br>";
   	}
   } else {
   	if(!empty($equivalent))
