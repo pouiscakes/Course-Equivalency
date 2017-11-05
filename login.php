@@ -40,7 +40,9 @@ session_start(); // must start session before any HTML
       $myusername = $_POST['myusername'];
     }
     if( !empty($_POST['mypassword']) ) {
-      $mypassword = $_POST['mypassword'];
+      $salt = "alsdbgoi24338hfnvoaisbet98gnv46zruyvib3r8";
+      $mypassword = $_POST['mypassword'].$salt;
+      $mypassword = sha1($mypassword);
     }
 
     if( !empty($_POST['myusername']) && !empty($_POST['mypassword']) ) {

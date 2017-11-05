@@ -15,7 +15,9 @@
   if ($_POST['password'] == $_POST['confirmpassword']){
    
     $username = $conn->real_escape_string($_POST['username']);
-    $password = $_POST['password']; //md 5 hash password security
+    $salt = "alsdbgoi24338hfnvoaisbet98gnv46zruyvib3r8";
+    $password = $_POST['password'].$salt;
+    $password = sha1($password);
 
     $sql = "INSERT INTO users (username, password) 
         VALUES ('$username', '$password')";
