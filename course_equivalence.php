@@ -1,10 +1,15 @@
 <?php
 require 'dbserver_info.php';
+
+// Report simple running errors
+error_reporting(0);
+
 $conn = new mysqli($servername, $username, $password, $db_name);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+session_save_path("/webpages/llin/coen174/sessions");
 session_start(); // must start session before any HTML
 $user_check = $_SESSION['login_user'];
 $ses_sql = mysqli_query($conn,"select username from users where username = '$user_check' ");
