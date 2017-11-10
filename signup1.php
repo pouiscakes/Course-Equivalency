@@ -1,6 +1,7 @@
 <?php
   require 'dbserver_info.php';
-  session_save_path("/webpages/llin/coen174/sessions");
+  require 'redirect.php';
+  // session_save_path("/webpages/llin/coen174/sessions");
   session_start();
   $_SESSION['message'] = ' ';
 
@@ -26,7 +27,7 @@
     if ($conn->query($sql) === true){
       $_SESSION['message'] = "Registration successful. Added $username to the database.";
       $_SESSION['login_user'] = $username;
-      header("location: login.php");
+      redirect("login.php");
     }
     else {
       $_SESSION['message'] = "User could not be added to the database! Username may already exist.";

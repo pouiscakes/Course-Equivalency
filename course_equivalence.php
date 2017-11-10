@@ -1,22 +1,24 @@
 <?php
 require 'dbserver_info.php';
+require 'redirect.php';
 
-// Report simple running errors
+// session_save_path("/webpages/llin/coen174/sessions");
+session_start(); // must start session before any HTML
+
 error_reporting(0);
+ini_set('display_errors', 0);
 
 $conn = new mysqli($servername, $username, $password, $db_name);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-session_save_path("/webpages/llin/coen174/sessions");
-session_start(); // must start session before any HTML
 $user_check = $_SESSION['login_user'];
 $ses_sql = mysqli_query($conn,"select username from users where username = '$user_check' ");
 $row = mysqli_fetch_array($ses_sql,MYSQLI_ASSOC);
 $login_session = $row['username'];
 if(!isset($_SESSION['login_user'])){ // should check $login_session actually
-  header("location:login.php");
+  redirect("login.php");
 }
 ?>
 
@@ -38,6 +40,11 @@ window.alert = function(msg) {
     <script type="text/javascript" src="courses_filter_search.js"></script>
   </head>
   <body>
+  <section>  
+ <?php
+    echo '<button style="float: right; margin-right:15px; margin-top:15px;"><a href="login.php" id="logout" > Logout '. $user_check .'</a></button>';
+ ?>
+  </section>
   	<h1> COEN Graduate Course Equivalence</h1>
  <?php
   $ses_sql = mysqli_query($conn,"select user_type from users where username = '$login_session' ");
@@ -105,5 +112,6 @@ mysqli_close($conn);
   else {
     require 'student_functions.php';
   }
+
 ?>
 

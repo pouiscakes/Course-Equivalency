@@ -1,6 +1,8 @@
 <?php
 require 'dbserver_info.php';
-session_save_path("/webpages/llin/coen174/sessions");
+require 'redirect.php';
+
+// session_save_path("/webpages/llin/coen174/sessions");
 session_start(); // must start session before any HTML
 ?>
 
@@ -59,7 +61,7 @@ session_start(); // must start session before any HTML
       		// session_register("myusername");
       		$_SESSION['login_user'] = $myusername;
 
-          header("location: course_equivalence.php");
+          redirect("course_equivalence.php");
       }else{
       	$error = "Your Login Name or Password is invalid";
       }
