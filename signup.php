@@ -52,6 +52,7 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap.css" rel="stylesheet" media="screen">
     <link href="css/main.css" rel="stylesheet" media="screen">
+    <script src="md5.min.js"></script>
   </head>
 
   <body>
@@ -65,7 +66,15 @@
         <input name="confirmpassword" id="confirmpassword" type="password" class="form-control" placeholder="Confirm Password" required><br>
 
 
-        <button name="Submit" id="submit" class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+        <button name="Submit" id="submit" class="btn btn-lg btn-primary btn-block" onclick="
+            var pass_val = document.getElementById('password').value;
+            var confirm_val = document.getElementById('confirmpassword').value;
+            document.getElementById('password').value = md5(pass_val);
+            document.getElementById('confirmpassword').value = md5(confirm_val);
+            " 
+            type="submit">Sign up
+        </button>
+
 
         <div id="message"></div>
       </form>

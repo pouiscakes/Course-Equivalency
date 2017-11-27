@@ -15,6 +15,7 @@ session_start(); // must start session before any HTML
     <!-- Bootstrap -->
     <link href="css/bootstrap.css" rel="stylesheet" media="screen">
     <link href="css/main.css" rel="stylesheet" media="screen">
+    <script src="md5.min.js"></script>
   </head>
 
   <body>
@@ -25,7 +26,11 @@ session_start(); // must start session before any HTML
         <input name="myusername" id="myusername" type="text" class="form-control" placeholder="Username" autofocus>
         <input name="mypassword" id="mypassword" type="password" class="form-control" placeholder="Password">
        
-        <button name="Submit" id="submit" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <button name="Submit" id="submit" class="btn btn-lg btn-primary btn-block" onclick="
+            var pass_val = document.getElementById('mypassword').value;
+            document.getElementById('mypassword').value = md5(pass_val);
+            " 
+            type="submit">Sign in</button>
 	    <a href="signup.php" name="Sign Up" id="signup" class="btn btn-lg btn-primary btn-block" type="submit">Create new account</a>
 
         <div id="message"></div>
