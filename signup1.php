@@ -1,7 +1,7 @@
 <?php
   require 'dbserver_info.php';
   require 'redirect.php';
-  // session_save_path("/webpages/llin/coen174/sessions");
+  session_save_path("/webpages/llin/coen174/sessions");
   session_start();
   $_SESSION['message'] = ' ';
 
