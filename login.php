@@ -26,7 +26,7 @@ session_start(); // must start session before any HTML
         <input name="mypassword" id="mypassword" type="password" class="form-control" placeholder="Password">
        
         <button name="Submit" id="submit" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-	    <a href="signup1.php" name="Sign Up" id="signup" class="btn btn-lg btn-primary btn-block" type="submit">Create new account</a>
+	    <a href="signup.php" name="Sign Up" id="signup" class="btn btn-lg btn-primary btn-block" type="submit">Create new account</a>
 
         <div id="message"></div>
       </form>
