@@ -15,7 +15,7 @@ session_start(); // must start session before any HTML
     <!-- Bootstrap -->
     <link href="css/bootstrap.css" rel="stylesheet" media="screen">
     <link href="css/main.css" rel="stylesheet" media="screen">
-    <script src="md5.min.js"></script>
+    <script src="js/md5.min.js"></script>
   </head>
 
   <body>

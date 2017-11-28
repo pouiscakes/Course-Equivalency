@@ -37,7 +37,7 @@ window.alert = function(msg) {
     <link href="css/bootstrap.css" rel="stylesheet" media="screen">
     <link href="css/style_courses.css" rel="stylesheet" media="screen">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <script type="text/javascript" src="courses_filter_search.js"></script>
+    <script type="text/javascript" src="js/courses_filter_search.js"></script>
   </head>
   <body>
   <section>  
