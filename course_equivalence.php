@@ -94,7 +94,8 @@ if($login_session == 'advisor') {
 }
 ?>
 
-	<input type="text" id="course_search" name="course_search" onkeyup="filterSearch()" placeholder="🔍 Search" />
+	<input type="text" id="course_search" name="course_search" onkeyup="filterSearch()" placeholder="🔍 Search" onfocus="this.placeholder = ''"
+onblur="this.placeholder = '🔍 Search'" />
 
   <div id="live_data"></div> 
 
