@@ -1,42 +1,12 @@
 <?php
-require 'dbserver_info.php';
-require 'redirect.php';
+  require 'dbserver_info.php';
+  require 'redirect.php';
 
-session_save_path("/webpages/llin/coen174/sessions");
-session_start(); // must start session before any HTML
-?>
+  session_save_path("/webpages/llin/coen174/sessions");
+  session_start(); // must start session before any HTML
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Course Equivalence</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap -->
-    <link href="css/bootstrap.css" rel="stylesheet" media="screen">
-    <link href="css/main.css" rel="stylesheet" media="screen">
-    <script src="js/md5.min.js"></script>
-  </head>
+  $error = ' ';
 
-  <body>
-    <div class="container">
-
-      <form class="form-signin" name="form1" method="post" action="login.php">
-        <h2 class="form-signin-heading">COEN Graduate Course Equivalence</h2>
-        <input name="myusername" id="myusername" type="text" class="form-control" placeholder="Username" autofocus>
-        <input name="mypassword" id="mypassword" type="password" class="form-control" placeholder="Password">
-       
-        <button name="Submit" id="submit" class="btn btn-lg btn-primary btn-block" onclick="
-            var pass_val = document.getElementById('mypassword').value;
-            document.getElementById('mypassword').value = md5(pass_val);
-            " 
-            type="submit">Sign in</button>
-	    <a href="signup.php" name="Sign Up" id="signup" class="btn btn-lg btn-primary btn-block" type="submit">Create new account</a>
-
-        <div id="message"></div>
-      </form>
-  
-  <?php
   	// Create connection
 	$conn = new mysqli($servername, $username, $password, $db_name);
 
@@ -68,11 +38,43 @@ session_start(); // must start session before any HTML
 
           redirect("course_equivalence.php");
       }else{
-      	$error = "Your Login Name or Password is invalid";
+      	$error = "Invalid username or password!";
       }
     }
 
   ?>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Course Equivalence</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.css" rel="stylesheet" media="screen">
+    <link href="css/main.css" rel="stylesheet" media="screen">
+    <script src="js/md5.min.js"></script>
+  </head>
+
+  <body>
+    <div class="container">
+
+      <form class="form-signin" name="form1" method="post" action="login.php">
+        <h2 class="form-signin-heading">COEN Graduate Course Equivalence</h2>
+        <div style="margin-bottom: 10px;"><?= $error?></div>
+        <input name="myusername" id="myusername" type="text" class="form-control" placeholder="Username" autofocus>
+        <input name="mypassword" id="mypassword" type="password" class="form-control" placeholder="Password">
+       
+        <button name="Submit" id="submit" class="btn btn-lg btn-primary btn-block" onclick="
+            var pass_val = document.getElementById('mypassword').value;
+            document.getElementById('mypassword').value = md5(pass_val);
+            " 
+            type="submit">Sign in</button>
+      <a href="signup.php" name="Sign Up" id="signup" class="btn btn-lg btn-primary btn-block" type="submit">Create new account</a>
+
+        <div id="message"></div>
+      </form>
+  
 
     </div> <!-- /container -->
 

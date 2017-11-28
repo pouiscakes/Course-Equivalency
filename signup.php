@@ -60,7 +60,7 @@
 
       <form class="form-signup" id="usersignup" name="usersignup" method="post" action="signup.php">
         <h2 class="form-signup-heading">Create an Account</h2>
-        <div class="alert alert-error"><?= $_SESSION['message']?></div>
+        <div style="margin-bottom: 10px;"><?= $_SESSION['message']?></div>
         <input name="username" id="username" type="text" class="form-control" placeholder="Username" required>
         <input name="password" id="password" type="password" class="form-control" placeholder="Password" required>
         <input name="confirmpassword" id="confirmpassword" type="password" class="form-control" placeholder="Confirm Password" required><br>
