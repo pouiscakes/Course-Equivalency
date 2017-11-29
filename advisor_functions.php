@@ -61,8 +61,8 @@
       });
       $(document).on('click', '.btn_delete', function(){  
            var id=$(this).data("id6");  
-           // if(confirm("Are you sure you want to delete this?"))  
-           // {  
+           if(confirm("Are you sure you want to delete this?"))  
+           {  
                 $.ajax({  
                      url:"delete.php",  
                      method:"POST",  
@@ -73,7 +73,7 @@
                           fetch_data();  
                      }  
                 });  
-           // }  
+           }  
       });   
  });  
  </script>
